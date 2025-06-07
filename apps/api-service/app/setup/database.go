@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"database/sql"
 	"errors"
-	"github.com/sdivyansh59/huma-project-starter/app/utils"
+	"github.com/sdivyansh59/huma-project-starter/app/internal-lib/utils"
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/dialect/pgdialect"
 	"github.com/uptrace/bun/driver/pgdriver"
