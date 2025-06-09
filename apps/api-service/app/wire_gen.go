@@ -13,13 +13,13 @@ import (
 
 // Injectors from wire.go:
 
-// InitializeApp wires up all dependencies and returns the app instance
+// InitializeApp wires up all dependencies and returns the application/service instance
 func InitializeApp() (*App, error) {
 	mux := setup.ProvideSingletonChiRouter()
 	api := setup.ProvideSingletonHuma(mux)
-	defaultConfig := setup.GetDefaultConfig()
+	defaultConfig := setup.ProvideDefaultConfig()
 	controller := greeting.NewController()
-	controllers := setup.InitializeControllers(controller)
+	controllers := setup.ProvideControllers(controller)
 	app := newApp(mux, api, defaultConfig, controllers)
 	return app, nil
 }

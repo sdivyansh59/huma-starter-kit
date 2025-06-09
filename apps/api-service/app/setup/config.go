@@ -43,8 +43,8 @@ const (
 
 const trueString = "true"
 
-// GetDefaultConfig returns the default config.
-func GetDefaultConfig() *DefaultConfig {
+// ProvideDefaultConfig returns the default config.
+func ProvideDefaultConfig() *DefaultConfig {
 	servicePrefix := utils.GetEnvOr("SERVICE_PREFIX", "")
 	if servicePrefix != "" {
 		servicePrefix += "_"

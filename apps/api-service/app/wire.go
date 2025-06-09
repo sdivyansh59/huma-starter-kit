@@ -9,19 +9,18 @@ import (
 	"github.com/sdivyansh59/huma-project-starter/app/setup"
 )
 
-// InitializeApp wires up all dependencies and returns the app instance
+// InitializeApp wires up all dependencies and returns the application/service instance
 func InitializeApp() (*App, error) {
 	wire.Build(
 		setup.ProvideSingletonChiRouter,
 		setup.ProvideSingletonHuma,
-		setup.GetDefaultConfig,
+		setup.ProvideDefaultConfig,
+		setup.ProvideControllers,
+		newApp,
 
 		// initialize all domains controller and repository
 		greeting.NewController,
 		//greeting.NewRepository,
-
-		setup.InitializeControllers,
-		newApp,
 	)
 	return nil, nil
 }

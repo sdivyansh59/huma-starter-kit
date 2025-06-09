@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/go-chi/chi/v5"
+	"github.com/rs/zerolog/log"
 	"github.com/sdivyansh59/huma-project-starter/app/setup"
 	"github.com/sdivyansh59/huma-project-starter/routes"
 	"github.com/uptrace/bun"
-	"log"
 	"net/http"
 )
 
@@ -41,14 +41,14 @@ func (a *App) Run() error {
 	a.registerRoutes()
 
 	// Start the HTTP server
-	log.Printf("Starting server on %s", a.config.HTTPAddress)
+	log.Info().Msgf("Starting server on %s", a.config.HTTPAddress)
 	return http.ListenAndServe(a.config.HTTPAddress, a.router)
 }
 
 // registerRoutes configures all API endpoints
 func (a *App) registerRoutes() {
 	if a.huma == nil {
-		log.Fatal("huma not initialized")
+		log.Fatal().Msgf("huma is nil")
 	}
 
 	routes.RegisterRoutes(a.huma, a.controllers)

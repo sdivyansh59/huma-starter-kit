@@ -10,20 +10,9 @@ import (
 )
 
 var (
-	routerOnce     sync.Once
-	routerInstance *chi.Mux
-
 	humaOnce     sync.Once
 	humaInstance *huma.API
 )
-
-// ProvideSingletonChiRouter returns a singleton chi router
-func ProvideSingletonChiRouter() *chi.Mux {
-	routerOnce.Do(func() {
-		routerInstance = chi.NewRouter()
-	})
-	return routerInstance
-}
 
 // ProvideSingletonHuma returns a singleton Huma API instance
 func ProvideSingletonHuma(router *chi.Mux) *huma.API {
@@ -42,10 +31,10 @@ type Controllers struct {
 	// Product  *product.Controller
 }
 
-// InitializeControllers wires up all controllers
-func InitializeControllers(
+// ProvideControllers wires up all controllers
+func ProvideControllers(
 	greetingController *greeting.Controller,
-	// Add other controllers here as parameters
+// Add other controllers here as parameters
 ) *Controllers {
 	return &Controllers{
 		Greeting: greetingController,
